@@ -13,10 +13,18 @@ body {
     box-sizing: border-box;
     color: #333;
     line-height: 1.6;
+    /* YENİ EKLENDİ: Yatay kaydırmayı engeller */
+    overflow-x: hidden;
 }
 
 *, *::before, *::after {
     box-sizing: inherit;
+}
+
+/* YENİ EKLENDİ: Resimlerin taşmasını engeller */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 .container {
@@ -119,6 +127,11 @@ h2 {
     background-color: var(--background-light); 
     box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
 }
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
 .top-bar {
     display: flex;
     justify-content: flex-end;
@@ -137,9 +150,13 @@ h2 {
 }
 .language-options {
     margin-left: 20px;
+    display: flex; /* YENİ EKLENDİ: Bayrak ve yazıyı hizalamak için */
+    align-items: center; /* YENİ EKLENDİ */
 }
 .language-options img {
     width: 20px;
+    height: 15px; /* YENİ EKLENDİ: Oran koruma */
+    object-fit: cover; /* YENİ EKLENDİ */
     vertical-align: middle;
     margin-right: 5px;
     border: 1px solid #ccc;
@@ -209,7 +226,7 @@ h2 {
     padding: 30px 60px;
     border-radius: 10px;
     max-width: 800px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+    width: 90%; /* YENİ EKLENDİ: Mobilde taşmayı engeller */
 }
 .slider-overlay h1 {
     font-size: 54px;
@@ -227,6 +244,11 @@ h2 {
 .slider-overlay p {
     margin-bottom: 35px;
     font-size: 16px;
+}
+.hero-buttons {
+    display: flex; /* YENİ EKLENDİ */
+    justify-content: center; /* YENİ EKLENDİ */
+    gap: 15px; /* YENİ EKLENDİ */
 }
 .slider-arrow {
     position: absolute;
@@ -256,11 +278,9 @@ h2 {
     padding: 80px 0;
     text-align: center;
     background-color: var(--background-light); 
-    overflow-x: hidden; /* Kart animasyonu için gerekebilir */
 }
 
 .product-container-wrapper {
-    /* Bu bölüm sadece başlık ve açıklama için */
     margin-bottom: 60px;
 }
 
@@ -270,11 +290,10 @@ h2 {
     font-size: 17px;
 }
 
-/* 🔸 Kapsayıcı alan (Sizin sağladığınız kart container'ı) */
 .product-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 sütun */
-  gap: 100px; /* satır ve sütun arası boşluk */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 100px; 
   justify-content: center;
   align-items: center;
   padding: 0 80px;
@@ -282,11 +301,6 @@ h2 {
   margin: 0 auto;
 }
 
-/* Arka plan rengini body'den almalı, bu yüzden kart CSS'indeki koyu renk kaldırıldı */
-/* body { background: #3b1f0a; } yerine ana site arka planı kullanıldı */
-
-
-/* 🔸 Kart */
 .card {
   position: relative;
   width: 300px;
@@ -295,22 +309,19 @@ h2 {
   justify-content: center;
   align-items: center;
   transition: 0.5s ease;
-  
-  /* Sizin verdiğiniz kart gölge ve arka plan */
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
-  background: var(--primary-color); /* Koyu kahve kart arka planı */
+  background: var(--primary-color); 
   border-radius: 20px;
   border: 2px solid transparent;
 }
 
 .card:hover {
   width: 620px;
-  box-shadow: 0 0 35px rgba(184, 134, 11, 0.6); /* Altın rengi parlama */
+  box-shadow: 0 0 35px rgba(184, 134, 11, 0.6); 
   transform: scale(1.03);
   border-color: var(--secondary-color);
 }
 
-/* 🔸 Daire arka plan */
 .card .circle {
   position: absolute;
   inset: 0;
@@ -326,7 +337,7 @@ h2 {
   width: 350px;
   height: 350px;
   border-radius: 50%;
-  background: #3c2a21; /* Koyu kahve iç halka */
+  background: #3c2a21; 
   border: 8px solid var(--clr);
   transition: 0.5s ease;
   filter: drop-shadow(0 0 15px var(--clr)) drop-shadow(0 0 40px var(--clr));
@@ -339,13 +350,11 @@ h2 {
   background: var(--clr);
 }
 
-/* 🔸 Logo */
 .card .circle .logo {
   position: relative;
   width: 220px;
   transition: 0.5s;
   z-index: 10;
-  /* Logo rengi koyu arka planda görünmesi için filtre */
   filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); 
 }
 
@@ -353,7 +362,6 @@ h2 {
   transform: scale(0);
 }
 
-/* 🍪 Cookie fotoğrafı */
 .cookie-image {
   position: absolute;
   top: 50%;
@@ -365,7 +373,6 @@ h2 {
   opacity: 0;
 }
 
-/* Hover olduğunda */
 .card:hover .cookie-image {
   top: 45%; 
   left: 78%; 
@@ -373,10 +380,9 @@ h2 {
   transform: translate(-50%, -50%) scale(1) rotate(8deg);
   opacity: 1;
   transition-delay: 0.4s;
-  z-index: 15; /* Yazıdan üste çıkardık */
+  z-index: 15; 
 }
 
-/* ✨ İçerik */
 .card .content {
   position: absolute;
   width: 45%;
@@ -386,7 +392,7 @@ h2 {
   transition: 0.5s ease;
   visibility: hidden;
   z-index: 10;
-  font-family: 'Poppins', sans-serif; /* Bu bölümü Poppins tuttum */
+  font-family: 'Poppins', sans-serif; 
 }
 
 .card:hover .content {
@@ -397,7 +403,7 @@ h2 {
 }
 
 .card .content h2 {
-  color: #fff; /* Başlık rengi beyaza çevrildi */
+  color: #fff; 
   text-transform: uppercase;
   font-size: 2em;
   margin-bottom: 10px;
@@ -414,7 +420,6 @@ h2 {
 /*==========================================================
   KURUMSAL, KALİTE VE FOOTER STİLLERİ
 ==========================================================*/
-/* Kurumsal/İmalathane Bölüm */
 .manufacturing-section {
     background-color: var(--primary-color); 
     color: var(--text-light);
@@ -430,7 +435,6 @@ h2 {
     font-size: 17px;
 }
 
-/* Kalite Politikası Bölümü */
 .quality-policy-section {
     padding: 80px 0;
     background-color: #fff;
@@ -439,6 +443,9 @@ h2 {
     display: flex;
     gap: 50px;
     align-items: center;
+}
+.policy-text {
+    flex: 2; /* YENİ EKLENDİ: Yazı alanına daha çok yer */
 }
 .policy-image-container {
     flex: 1;
@@ -484,17 +491,25 @@ h2 {
 .main-footer {
     background-color: var(--background-dark); 
     color: #ccc;
-    padding: 40px 0 15px;
+    padding: 40px 15px 15px; /* Padding ayarlandı */
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .footer-logo img {
     height: 50px; 
     filter: brightness(0) invert(1);
     margin-bottom: 25px;
+    margin-left: auto; /* YENİ EKLENDİ: Mobilde ortalamak için */
+    margin-right: auto; /* YENİ EKLENDİ: Mobilde ortalamak için */
+    display: block; /* YENİ EKLENDİ: Mobilde ortalamak için */
 }
 .footer-nav ul {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    flex-wrap: wrap; /* YENİ EKLENDİ: Mobilde sığmazsa alt satıra atar */
+    gap: 20px 30px; /* YENİ EKLENDİ: Dikey ve yatay boşluk */
     margin-bottom: 25px;
 }
 .footer-nav ul li a {
@@ -529,63 +544,126 @@ h2 {
 
 
 /*==========================================================
-  DUYARLILIK (RESPONSIVE) AYARLARI
+  DUYARLILIK (RESPONSIVE) AYARLARI - GÜNCELLENDİ
 ==========================================================*/
+
+/* 1200px altı (Geniş Tabletler) */
 @media (max-width: 1200px) {
     .product-cards-grid {
-        padding: 0 20px;
+        padding: 0 40px;
+        gap: 60px;
     }
 }
+
+/* 992px altı (Tabletler) */
 @media (max-width: 992px) {
     .main-nav ul {
-        gap: 15px;
+        gap: 15px; /* Menü aralığı azaltıldı */
     }
+    
+    /* Kalite politikası: Resim üste, yazı alta */
     .policy-content {
         flex-direction: column;
         gap: 30px;
     }
     .policy-image-container {
         order: -1; 
+        text-align: center; /* Resmi ortala */
     }
     .policy-image-container img {
         max-width: 350px;
     }
+    .policy-text {
+        text-align: center;
+    }
+
     .hero-slider-container {
         height: 550px;
     }
-    /* Kart Grid'i Tek Sütun */
+
+    /* Ürün Kartları: 2 sütundan tek sütuna düşür */
     .product-cards-grid {
         grid-template-columns: 1fr;
         gap: 60px;
+        padding: 0 20px;
     }
+    /* Kartı ortala ve genişlemesini sınırla */
     .card {
         width: 90%;
+        max-width: 320px; 
         margin: 0 auto;
     }
+    /* Hover'da büyüme efektini tablete uyarla */
     .card:hover {
-        width: 95%; /* biraz daha genişleyebilir */
+        width: 95%; 
+        max-width: 620px; /* Tablette genişleyebilir */
     }
     .card:hover .cookie-image {
         height: 300px;
-        left: 65%; /* resmi biraz daha sola çektik */
+        left: 75%; 
     }
 }
 
+
+/* 768px altı (Dikey Tabletler ve Büyük Telefonlar) */
 @media (max-width: 768px) {
     h2 {
         font-size: 30px;
     }
+
+    /* Üst Bar: İkonlar ve dil alt alta gelsin */
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    .contact-icons {
+        order: 2; /* İkonlar alta */
+    }
+    .language-options {
+        order: 1; /* Dil üste */
+        margin-left: 0;
+    }
+    .contact-icons a {
+        margin: 0 10px; /* Sadece sol değil, her iki yana boşluk */
+    }
+
+    /* Ana Navigasyon: Logo, linkler ve buton alt alta */
     .main-nav {
         flex-direction: column;
         text-align: center;
+        padding: 15px;
+    }
+    .logo {
+        margin-bottom: 15px;
     }
     .main-nav ul {
         flex-direction: column;
         gap: 10px;
         margin: 15px 0;
+        width: 100%; 
     }
+    .main-nav ul li a {
+        display: block; /* Tıklama alanını genişlet */
+        padding: 8px 0;
+        border-bottom: 1px solid #eee; /* Linkleri ayır */
+    }
+    .main-nav ul li a:after {
+        display: none; /* Alttaki çizgiyi kaldır */
+    }
+    .btn-order {
+        margin-top: 10px;
+        width: 80%; /* Buton genişlesin */
+        max-width: 300px;
+    }
+
+    /* Hero Alanı: Yazıları ve butonları ayarla */
     .hero-slider-container {
-        height: 450px;
+        height: 500px; 
+    }
+    .slider-overlay {
+        padding: 20px;
+        bottom: 10%;
     }
     .slider-overlay h1 {
         font-size: 38px;
@@ -593,57 +671,112 @@ h2 {
     .slider-overlay h2 {
         font-size: 24px;
     }
+    /* Hero butonları alt alta */
+    .hero-buttons {
+        flex-direction: column; 
+        gap: 10px;
+        align-items: center; 
+    }
+    .btn-primary, .btn-secondary {
+        width: 80%; 
+        max-width: 300px;
+    }
+
+    /* Kalite Politikası: 3'lü grid tekli gride düşsün */
     .policy-points {
         grid-template-columns: 1fr; 
     }
+
+    /* Footer: Linkler ve alt kısım alt alta */
     .footer-nav ul {
-        flex-wrap: wrap;
+        flex-direction: column; 
+        gap: 10px;
+        text-align: center;
     }
     .footer-bottom {
         flex-direction: column;
         gap: 15px;
+        text-align: center;
     }
-    /* Kartlar için ek mobil düzenleme */
+    .social-media-footer {
+        order: 2;
+    }
+    .footer-bottom p {
+        order: 3;
+    }
+    .yurum-medya {
+        order: 1;
+    }
+
+
+    /* MOBİL KART DAVRANIŞI DÜZENLEMESİ
+       Mobilde :hover yoktur, "tap" (tıklama) vardır. 
+       Bu kod, tıklandığında kartın "açılmasını" sağlar.
+    */
+    .card {
+        width: 300px; /* Sabit genişliğe dön */
+    }
+    /* Tıklandığında (hover) */
     .card:hover {
-        height: 500px; /* Dikey alanda daha fazla yer verdik */
+        width: 300px; /* YATAYDA BÜYÜMESİN */
+        height: 500px; /* DİKEYDE BÜYÜSÜN */
+        transform: scale(1.03); 
     }
+    /* Tıklandığında resim ortaya ve aşağı gelsin */
     .card:hover .cookie-image {
-        top: 60%; /* Resmi biraz daha aşağı kaydırdık */
-        left: 50%; 
+        top: 65%; 
+        left: 50%; /* Tam ortaya */
+        transform: translate(-50%, -50%) scale(1) rotate(8deg); 
         height: 250px;
+        transition-delay: 0.4s;
     }
+    /* İçerik her zaman ortada başlasın */
     .card .content {
         width: 90%;
-        left: 5%;
-        top: 10%;
+        left: 50%; 
+        transform: translateX(-50%);
+        padding: 10px;
+        text-align: center;
     }
+    /* Tıklandığında içerik üste gelsin */
     .card:hover .content {
         left: 50%;
         transform: translateX(-50%);
-        top: 10%;
-    }
-    .card:hover .circle::before {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        background: var(--clr);
+        top: 25px; 
+        transition-delay: 0.5s;
     }
 }
 
+
+/* 480px altı (Küçük Telefonlar) */
 @media (max-width: 480px) {
     .slider-overlay h1 {
         font-size: 30px;
     }
+    .slider-overlay h2 {
+        font-size: 20px;
+    }
     .slider-overlay {
-        padding: 20px 30px;
+        padding: 20px 15px;
         bottom: 5%;
     }
-    .hero-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    .section-description, .section-description-wide {
+        font-size: 15px;
+        padding: 0 10px;
     }
-    .btn-primary {
-        margin-right: 0;
+    
+    /* Kartlar ekrana tam sığsın */
+    .product-cards-grid {
+        padding: 0 10px;
+    }
+    .card, .card:hover {
+         width: 95%; /* Genişliği % olarak ayarla */
+         max-width: 300px; 
+    }
+    .card:hover .cookie-image {
+        height: 220px; /* Resmi biraz daha küçült */
+    }
+    .card .content h2 {
+         font-size: 1.8em; /* Başlığı küçült */
     }
 }
